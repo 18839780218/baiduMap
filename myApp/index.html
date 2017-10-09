@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="test.sass">
+    <title>表单认证</title>
+</head>
+<body>
+        <form class="cmxform" id="commentForm" method="get" action="">
+            <fieldset>
+                <legend>输入您的名字，邮箱，URL，备注。</legend>
+                <p>
+                    <label for="cname">Name (必需, 最小两个字母)</label>
+                    <input id="cname" name="name" minlength="2" type="text" required>
+                </p>
+                <p>
+                    <label for="cemail">E-Mail (必需)</label>
+                    <input id="cemail" type="email" name="email" required>
+                </p>
+                <p>
+                    <label for="curl">URL (可选)</label>
+                    <input id="curl" type="url" name="url">
+                </p>
+                <p>
+                    <label for="ccomment">备注 (必需)</label>
+                    <textarea id="ccomment" name="comment" required></textarea>
+                </p>
+                <p>
+                    <input class="submit" type="submit" value="Submit">
+                </p>
+            </fieldset>
+        </form>
+</body>
+</html>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script>
+    //中文提示信息
+    (function( factory ) {
+        if ( typeof define === "function" && define.amd ) {
+            define( ["jquery", "../jquery.validate"], factory );
+        } else {
+            factory( jQuery );
+        }
+    }(function( $ ) {
+
+        /*
+         * Translated default messages for the jQuery validation plugin.
+         * Locale: ZH (Chinese, 中文 (Zhōngwén), 汉语, 漢語)
+         */
+        $.extend($.validator.messages, {
+            required: "这是必填字段",
+            remote: "请修正此字段",
+            email: "请输入有效的电子邮件地址",
+            url: "请输入有效的网址",
+            date: "请输入有效的日期",
+            dateISO: "请输入有效的日期 (YYYY-MM-DD)",
+            number: "请输入有效的数字",
+            digits: "只能输入数字",
+            creditcard: "请输入有效的信用卡号码",
+            equalTo: "你的输入不相同",
+            extension: "请输入有效的后缀",
+            maxlength: $.validator.format("最多可以输入 {0} 个字符"),
+            minlength: $.validator.format("最少要输入 {0} 个字符"),
+            rangelength: $.validator.format("请输入长度在 {0} 到 {1} 之间的字符串"),
+            range: $.validator.format("请输入范围在 {0} 到 {1} 之间的数值"),
+            max: $.validator.format("请输入不大于 {0} 的数值"),
+            min: $.validator.format("请输入不小于 {0} 的数值")
+        });
+
+    }));
+
+    $.validator.setDefaults({
+        submitHandler: function() {
+            alert("提交事件!");
+        }
+    });
+    $().ready(function() {
+        $("#commentForm").validate();
+    });
+
+</script>
